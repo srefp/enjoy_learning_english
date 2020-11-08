@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>studentRank</title>
+
+  <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"/>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <link href="../../../css/dashboard.css" rel="stylesheet">
+  <!--让ie识别HTML5 元素 -->
+  <!--让ie6-ie8支持css3 media query -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../dashboard/studentDashboard.html">后台管理 - 学生端</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">用户名 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">个人信息</a></li>
+            <li><a href="#">退出登录</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- <form class="navbar-form navbar-right">-->
+      <!--   <input type="text" class="form-control" placeholder="Search...">-->
+      <!-- </form>-->
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li><a href="../dashboard/studentDashboard.html">信息总览</a></li>
+        <li><a href="../comment/studentComment.html">每日评语</a></li>
+        <li class="active"><a href="./studentRank.html">成绩和排名<span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <h1 class="page-header">我的排名 - #6</h1>
+
+      <div class="row">
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>一单元成绩</h3>
+              <h1><span class="label label-info">96</span></h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>二单元成绩</h3>
+              <h1><span class="label label-info">96</span></h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>三单元成绩</h3>
+              <h1><span class="label label-info">96</span></h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-md-2">
+          <div class="thumbnail">
+            <div class="caption">
+              <h3>四单元成绩</h3>
+              <h1><span class="label label-info">96</span></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

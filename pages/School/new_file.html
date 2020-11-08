@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>table</title>
+		<link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" />
+		<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet"href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css"> 
+		
+
+	</head>
+	<body>
+		<table class="table" id="dataShow">
+
+		</table>
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+		<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<script>
+			$(function() {
+				//开始装载数据
+				$("#dataShow").bootstrapTable({
+					url: "http://www.zunyaohui.com/data/?action=product&class=0&type=list&option=a1_b1_c1_d1_e3_&keyword=",
+					sortName: "CompanyShortname", //排序列
+					striped: true, //條紋行 
+					sidePagination: "server", //服务器分页 
+					showRefresh: true, //刷新功能 
+					clickToSelect: false, //选择行即选择checkbox 
+					singleSelect: true, //仅允许单选 
+					pagination: true, //启用分页  
+					pageCount: 10, //每页行数 
+					pageIndex: 0, //起始页 
+					pageList: [10, 25, 50, 100], //可供选择的每页的行数
+					escape: true, //过滤危险字符 
+					queryParams: getParams, //携带参数
+					dataType: "jsonp",
+					columns: [{
+							title: '发行机构',
+							field: 'CompanyShortname',
+							align: 'center',
+							valign: 'middle'
+						},
+						{
+							title: '产品简称',
+							field: 'ProductShortname',
+							align: 'center',
+							valign: 'middle',
+						},
+						{
+							title: '预期年收益',
+							field: 'IncomeRate',
+							align: 'center',
+							formatter: function(value, row, index) {
+								return value + "0%";
+							}
+						},
+						{
+							title: '起始资金',
+							field: 'AmountLow',
+							align: 'center'
+						},
+						{
+							title: '产品期限',
+							field: 'Term',
+							align: 'center',
+						},
+						{
+							title: '付息方式',
+							field: 'ServicingWay',
+							align: 'center',
+						},
+						{
+							title: '投资领域',
+							field: 'InvestmentField',
+							align: 'center',
+						},
+						{
+							title: '预约',
+							field: 'id',
+							align: 'center',
+							formatter: function(value, row, index) {
+								return '<a href="#" mce_href="#" onclick="reserve(\'' + row.id + '\')">预约</a> ';
+							}
+						}
+					],
+					onLoadSuccess: function(ee) {
+						//查询数据成功
+						console.info(ee);
+
+					}
+				});
+			});
+			//默认加载时携带参数 
+			function getParams(parm) {
+				return {
+					page: (parm.offset / parm.limit) + 1,
+					rows: 10
+				};
+			}
+			//预约功能
+			function reserve(parm) {
+				alert("进行预约操作！");
+			}
+		</script>
+		
+	</body>
+</html>

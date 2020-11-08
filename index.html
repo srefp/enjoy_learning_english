@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="">
+<!--<![endif]-->
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>登录</title>
+  <meta name="description" content=""/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"/>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="./css/login.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/loading.css">
+    
+    </head>
+    <body>
+    <div class="login_container">
+      <div class="login_box">
+        <form class="form-signin">
+          <h2 class="form-signin-heading">请登录</h2>
+          <div class="form-signin-heading">
+            <label><input type="radio" name="actor" id="student" value="student">学生</label>
+            <label><input type="radio" name="actor" id="teacher" value="teacher">教师</label>
+            <label><input type="radio" name="actor" id="school" value="school">学校</label>
+            <label><input type="radio" name="actor" id="admin" value="admin">管理员</label>
+          </div>
+          <div class="alert alert-danger" role="alert" style="display: none">请输入用户名或密码</div>
+          <div class="account">
+            <label for="inputEmail" class="sr-only">账号</label>
+            <input type="text" id="inputEmail" class="form-control" placeholder="请输入用户名" required autofocus>
+          </div>
+          <div class="password">
+            <label for="inputPassword" class="sr-only">密码</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
+          </div>
+          <!--          <div class="checkbox">-->
+          <!--            <label>-->
+          <!--              <input type="checkbox" value="remember-me"> Remember me-->
+          <!--            </label>-->
+          <!--          </div>-->
+        </form>
+        <button class="btn btn-lg btn-primary btn-block submit" type="button">登录</button>
+      </div>
+    </div>
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/loading.js"></script>
+<!--    <script type="text/javascript">-->
+
+<!--      $('input:radio:first').attr('checked', 'true');-->
+
+
+<!--      $().ready(function () {-->
+<!--        $('.submit').click(function () {-->
+<!--          if ($('#inputEmail').val() === '' || $('#inputPassword').val() === '') {-->
+<!--            $('.alert').css('display', 'block')-->
+<!--          } else {-->
+<!--            $('.alert').css('display', 'none')-->
+<!--            $('body').loading({-->
+<!--              loadingWidth: 240,-->
+<!--              title: '',-->
+<!--              name: 'loginLoading',-->
+<!--              discription: '正在登录...',-->
+<!--              direction: 'column',-->
+<!--              type: 'origin',-->
+<!--              originDivWidth: 40,-->
+<!--              originDivHeight: 40,-->
+<!--              originWidth: 6,-->
+<!--              originHeight: 6,-->
+<!--              smallLoading: false,-->
+<!--              loadingMaskBg: 'rgba(0,0,0,0.2)'-->
+<!--            })-->
+
+
+
+<!--            let account = $('#inputEmail').val();-->
+<!--            let url = "pages/Teacher/class/index.html?account=" + account;-->
+<!--            let newWin = window.open("http://47.98.165.36:9999/firstdemo/lexueenglish/pages/Student/dashboard/studentDashboard.html");-->
+<!--            setTimeout(() => {-->
+<!--              removeLoading('loginLoading')-->
+<!--            }, 3000)-->
+<!--          }-->
+<!--        })-->
+<!--      })-->
+<!--    </script>-->
+
+    <script type="text/javascript">
+      $('input:radio:first').attr('checked', 'true');
+
+
+      $().ready(function () {
+        $('.submit').click(function () {
+          if ($('#inputEmail').val() === '' || $('#inputPassword').val() === '') {
+            $('.alert').css('display', 'block')
+          } else {
+            $('.alert').css('display', 'none')
+            $('body').loading({
+              loadingWidth: 240,
+              title: '',
+              name: 'loginLoading',
+              discription: '正在登录...',
+              direction: 'column',
+              type: 'origin',
+              originDivWidth: 40,
+              originDivHeight: 40,
+              originWidth: 6,
+              originHeight: 6,
+              smallLoading: false,
+              loadingMaskBg: 'rgba(0,0,0,0.2)'
+            })
+            let user = $('#type input:radio:checked').val();//student admin admin school
+            let account = $('#inputEmail').val();
+            let password = $('#inputPassword').val();
+            let urlAdmin = "pages/Admin/permission/index.html?account=" + account;
+            let urlUser = "card.html?account=" + account;
+            let url = urlUser;
+
+            //判断user要用哪个账户
+            let type;
+            if(user == "student" ||user == "admin" ||user == "admin"){
+              type = "管理账户";
+            }
+            else{
+              type = "校区账户";
+            }
+
+            if(type == "管理账户") url = "http://chipmunkenglish.cn:8080/pages/Admin/permission/index.html?account=admin"; //urlAdmin;
+            console.log(account,password,type,url);
+            $.ajax({
+              type: "POST",
+              url: "http://chipmunkenglish.cn:8080/firstdemo/login",
+              data:{
+                type:type,
+                user:account,
+                password:password
+              },
+              async: true,
+              dataType: "json",
+              success: function(res) {
+                if(encodeURI(res.data) == "%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F"){
+                  let newWin = window.open(url);
+                }else if(encodeURI(res.data) == "%E8%B4%A6%E6%88%B7%E4%B8%8D%E5%AD%98%E5%9C%A8"){
+                  alert("账号不存在");
+                }
+                setTimeout(() => {
+                  removeLoading('loginLoading')
+                }, 3000)
+              },
+              error: function(err) {
+                console.log(err);
+              }
+            });
+          }
+        })
+      })
+
+    </script>
+    
+    </body>
+    </html>
+    
